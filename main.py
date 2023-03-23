@@ -1,4 +1,5 @@
 import requests
+from sendMail import send_email
 
 api_key = "31f32b440c5d4341a2f1bf5e54f71c13"
 
@@ -7,6 +8,11 @@ url = "https://newsapi.org/v2/everything?q=tesla&from=2023-02-23&sortBy=publishe
 request = requests.get(url)
 content = request.json()
 
+# Access the article titles and description
+body = ""
 for article in content["articles"]:
-    print(article["title"])
-    print(article["description"])
+    if article["title"] is not None:
+        body = body + article["title"] + "\n" + str(article["description"]) + 2*"\n"
+
+body = body.encode("utf-8")
+send_email(message=body)
