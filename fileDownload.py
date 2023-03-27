@@ -1,9 +1,9 @@
 import requests
 
 
-url = "https://youtu.be/EdftT8GMU1U"
+url = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/181px-Cat_August_2010-4.jpg"
 
 response = requests.get(url)
 
-with open("image.mkv", "wb") as file:
+with open("image.jpg", "wb") as file:
     file.write(response.content)
